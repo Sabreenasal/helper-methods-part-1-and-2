@@ -1,34 +1,33 @@
 class MoviesController < ApplicationController
   def new
-    @the_movie = Movie.new
-
-    render template: "movies/new"
+   @movie = Movie.new
   end
 
   def index
-    matching_movies = Movie.all
+    # matching_movies = Movie.all
 
-    @list_of_movies = matching_movies.order({ created_at: :desc })
+    # @list_of_movies = matching_movies.order({ created_at: :desc })
+    @movies = Movie.order(created_at: :desc)
 
     respond_to do |format|
       format.json do
-        render json: @list_of_movies
+        render json: @movies
       end
 
-      format.html do
-        render({ template: "movies/index" })
-      end
+      format.html 
+        
     end
   end
 
   def show
-    the_id = params.fetch(:id)
+    # the_id = params.fetch(:id)
 
-    matching_movies = Movie.where({ id: the_id })
+    # matching_movies = Movie.where({ id: the_id })
 
-    @the_movie = matching_movies.first
+    # @the_movie = matching_movies.first
 
-    render({ template: "movies/show" })
+    # render({ template: "movies/show" })
+    @movie = Movie.find(params.fetch(:id))
   end
 
   def create
