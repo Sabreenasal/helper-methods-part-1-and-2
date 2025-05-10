@@ -37,43 +37,48 @@ class MoviesController < ApplicationController
 
     if @the_movie.valid?
       @the_movie.save
-      redirect_to("/movies", { notice: "Movie was successfully created." })
+      redirect_to movies_url, notice: "Movie was successfully created." 
     else
-      render template: "movies/new"
+      render "new"
     end
   end
 
   def edit
-    the_id = params.fetch(:id)
+    # the_id = params.fetch(:id)
 
-    matching_movies = Movie.where({ id: the_id })
+    # matching_movies = Movie.where({ id: the_id })
 
-    @the_movie = matching_movies.first
+    # @the_movie = matching_movies.first
 
-    render({ template: "movies/edit" })
+    # render({ template: "movies/edit" })
+    @movies = Movie.find(params.fetch(:id))
   end
 
   def update
-    the_id = params.fetch(:id)
-    the_movie = Movie.where({ id: the_id }).first
+    # the_id = params.fetch(:id)
+    # the_movie = Movie.where({ id: the_id }).first
 
-    the_movie.title = params.fetch("query_title")
-    the_movie.description = params.fetch("query_description")
+    # the_movie.title = params.fetch("query_title")
+    # the_movie.description = params.fetch("query_description")
+    movie_attributes = params.require(:movie).permit(:title, :description)
+    movie = Movie.new(movie_attributes)
 
     if the_movie.valid?
-      the_movie.save
-      redirect_to("/movies/#{the_movie.id}", { notice: "Movie updated successfully." })
+      the_movie.
+      redirect_to movie_url(movie), notice: "Movie updated successfully." 
     else
-      redirect_to("/movies/#{the_movie.id}", { alert: "Movie failed to update successfully." })
+      redirect_to movie_url(movie), alert: "Movie failed to update successfully." 
     end
   end
 
   def destroy
-    the_id = params.fetch(:id)
-    the_movie = Movie.where({ id: the_id }).first
+    # the_id = params.fetch(:id)
+    # the_movie = Movie.where({ id: the_id }).first
 
-    the_movie.destroy
+    # the_movie.destroy
+    movie = Movie.find(params.fetch(:id))
+    movie.destroy
 
-    redirect_to("/movies", { notice: "Movie deleted successfully." })
+    redirect_to movies_url, notice: "Movie deleted successfully."  
   end
 end
