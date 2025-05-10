@@ -1,10 +1,10 @@
 <h1>Edit movie</h1>
 
-<% @the_movie.errors.full_messages.each do |message| %>
+<% @movie.errors.full_messages.each do |message| %>
   <p style="color: red;"><%= message %></p>
 <% end %>
 
-<form action="/movies/<%= @the_movie.id %>" method="post">
+<form action="/movies/<%= @movie.id %>" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   
   <input name="_method" value="patch" type="hidden">
@@ -14,7 +14,7 @@
       Title
     </label>
 
-    <input type="text" id="title_box" name="query_title" value="<%= @the_movie.title %>">
+    <input type="text" id="title_box" name="query_title" value="<%= @movie.title %>">
   </div>
 
   <div>
@@ -22,7 +22,7 @@
       Description
     </label>
 
-    <textarea id="description_box" name="query_description" rows="3"><%= @the_movie.description %></textarea>
+    <textarea id="description_box" name="query_description" rows="3"><%= @movie.description %></textarea>
   </div>
 
   <button>
