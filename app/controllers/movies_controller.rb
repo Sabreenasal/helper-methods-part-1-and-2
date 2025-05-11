@@ -53,7 +53,7 @@ class MoviesController < ApplicationController
     # @the_movie = matching_movies.first
 
     # render({ template: "movies/edit" })
-    @movies = Movie.find(params.fetch(:id))
+    @movie = Movie.find(params.fetch(:id))
   end
 
   def update

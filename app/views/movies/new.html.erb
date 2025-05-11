@@ -7,7 +7,7 @@
 <form action="/movies" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
- 
+ <!---->
   <div>
     <label for="title_box">
       Title
@@ -23,7 +23,7 @@
 
     <textarea id="description_box" name="query_description" rows="3"><%= @movie.description %></textarea>
   </div>
-
+  
   <button>
     Create Movie
   </button>

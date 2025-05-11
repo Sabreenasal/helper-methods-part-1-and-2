@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Routes for the Movie resource:
  resources :movies
 
-  resources :directors
+  # resources :directors
   
   # # CREATE
   # # post("/movies", { :controller => "movies", :action => "create" })
